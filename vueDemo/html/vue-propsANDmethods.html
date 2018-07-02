@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性与方法</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+</div>
+</body>
+<script>
+    var creatdata={a:1};
+  var vm=new Vue({
+      el:"#app",
+      data:creatdata
+  });
+    console.log(vm.a===creatdata.a);
+</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button>点击向下传播broadcast</button>
+    <children v-on:test="parent" v-on:test2="another"> </children>
+</div>
+</body>
+<script>
+var vm = new Vue({
+el: '#app',
+data: {
+val: 1        //父组件的val数据
+},
+methods: {
+parent: function (arg) {         //父组件的 parent方法
+console.log(arg);
+console.log("the first method with test event");
+},
+another: function () {             //父组件的 another方法
+console.log("another method");
+}
+},
+components: {                             //注册子组件
+'children': {                             //触发children子组件构造器
+props: ['test'],                     //把父组件中的parent方法绑定到子组件中（因为使用了v-on   所以 test方法会和父组件中的parent方法完全一样）
+//子组件的模板     模板中带有方法
+template: "<div><button @click='childClick'>children1</button></br><button @click='childClick2'>children1</button></div>",
+methods: {
+childClick: function () {             //子组件中，调用childClick方法
+this.$emit("test", 'the argument for dispatch');             //通过“this.$emit”向父组件传递方法“test”(当子组件触发childClick方法时，父组件也会触发parent方法)
+},
+childClick2: function () {             //子组件中，调用childClick2方法
+this.$emit("test2");                                                     //通过“this.$emit”向父组件传递方法“test2”
+}
+},
+events: {
+test: function () {
+console.log("test");
+},
+test2: function () {
+console.log("test2");
+}
+}
+}
+}
+});
+</script>
+</html>

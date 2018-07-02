@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessagemm}}"</p>
+</div>
+</body>
+<script>
+   var vm=new Vue({
+       el:"#app",
+       data: {
+           message: 'Hello'
+       },
+       //methods/computed
+       methods: {
+
+           reversedMessage: function () {
+               //`this`指向vm实例
+              // return this.message.split('').reverse().join('')
+               return Date.now();
+           },
+       },
+       computed:{
+           // a computed getter
+           reversedMessagemm: function () {
+               //`this`指向vm实例
+               return this.message.split('').reverse().join('');
+           }
+       }
+   });
+</script>
+</html>

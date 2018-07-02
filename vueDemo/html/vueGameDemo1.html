@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueEXP</title>
+    <script src="../js/vue.js"></script>
+    <style>
+    	span,div{
+    		padding:0px;
+    		margin:0px;
+    	}
+        .divBox{
+            width:40px;
+            height:40px;
+            border:1px solid #3c763d;
+            display:inline-block;
+            
+        }
+        .titleHorizontal{
+            margin:0px -19px 0px 56px;
+        }
+        .titleVertical{
+            width:40px;
+            height:46px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .titleVerticalBox{
+            float: left;
+        }
+        #activeBox{
+        	position:absolute;
+            background-color: #2e6da4;
+            top:0px;
+            left:0px;
+        }
+        .interval{
+           width:40px;
+           height:0px;	
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+	<div class="headerVertical">
+	    <template v-for="titles in 10">
+	      <span v-if="titles<=10" class="titleHorizontal">{{titles}}</span>
+	    </template>
+   </div>
+    <div class="titleVerticalBox">
+        <template v-for="titles in 10">
+            <div v-if="titles<=10" class="titleVertical">{{titles}}</div>
+        </template>
+    </div>
+    <div style="position: relative;float:left;font-size: 0px;"><!--解决inline-block出现间隔问题-->
+        <template v-for="items in 100">
+            <div class="divBox">
+            </div>
+            <div class="interval" v-if="items%10==0">
+        </template>
+        <div class="divBox" id="activeBox"></div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+	window.onload=function(){
+		var vm=new Vue({
+	        el:"#app",
+	        data:{
+	          boxArrayHorizontal:[1,2,3,4,5,6,7,8,9,10],//水平
+	          boxArrayVertical:[1,2,3,4,5,6,7,8,9,10],//垂直
+	        },
+	        methods:{
+	
+	        }
+    	});
+    	var interval=5;
+    	let moveHorizontal=47;
+    	let moveVertical=46
+    	var activeBox=document.getElementById("activeBox");
+        window.document.onkeydown=function(event){
+        	if(event.keyCode==37)//left up right down
+        	{//向左移动
+        		if(activeBox.offsetLeft>0){
+        		  activeBox.style.left=activeBox.offsetLeft-moveHorizontal+'px';
+        		  console.log("activeBox.offsetLeft"+activeBox.offsetLeft);
+        		 }else{
+        		 	 activeBox.style.left=0;
+        		 }
+        	}else if(event.keyCode==38){
+        		//向上移动
+        		if(activeBox.offsetTop>0){
+        		  activeBox.style.top=activeBox.offsetTop-moveVertical+'px';
+        		  console.log("activeBox.top:"+activeBox.offsetTop+" activeBox.style.top:"+activeBox.style.top);
+        		 }else{
+        		 	 console.log(activeBox.top);
+        		 	 activeBox.style.offsetTop=0;
+        		 	 
+        		 }
+        		console.log("up")
+        	}else if(event.keyCode==39){
+        		//向左移动
+        		if(activeBox.offsetLeft<416){
+        		  activeBox.style.left=activeBox.offsetLeft+moveHorizontal+'px';
+        		  console.log(activeBox.offsetLeft);
+        		 }else{
+        		 	 activeBox.style.left=416;
+        		 }
+        		console.log("right")
+        	}else if(event.keyCode==40){
+        		//向下移动
+        		if(activeBox.offsetTop<414){
+        		  activeBox.style.top=activeBox.offsetTop+moveVertical+'px';
+        		  console.log(activeBox.top);
+        		 }else{
+        		 	 console.log(activeBox.top);
+        		 	 activeBox.style.offsetTop=414;
+        		 	 
+        		 }
+            }else{
+            	return;
+            }
+        	
+	}
+}
+
+</script>

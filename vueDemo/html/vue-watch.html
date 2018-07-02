@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>watch的键值是字符串！！！</title>
+    <script src="../js/vue.js"></script>
+</head>
+<style>
+    .box1{
+        width:200px;
+        height:200px;
+        background-color: #3c763d;
+        margin-top:20px;
+    }
+    .box2{
+        width:100px;
+        height:100px;
+        box-shadow:0px 0px 0px 3px rgb(162,255,151),
+        0px 0px 0px 6px rgb(154,255,252),
+        0px 0px 0px 9px rgb(252,154,193);
+    }
+</style>
+<body>
+<div id="app">
+    <input type="text" v-model="obj.msg">
+    <div class="box1">
+        <div class="box2">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:function () {
+            return {
+                obj:{
+                    msg:2333
+                }
+            }
+        },
+        watch:{
+            'obj': {
+                handler:function (value, oldvalue) {
+                    console.log("变更", this.obj);
+                    console.log("新：", value);
+                    console.log("旧：", oldvalue);
+                },
+                deep: true
+            }
+        }
+    });
+</script>

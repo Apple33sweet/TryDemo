@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>styleClass</title>
+    <script src="../js/vue.js"></script>
+
+    <style>
+        .active{
+            width:100px;
+            height:100px;
+
+        }
+        .text-danger{
+            background-color: aqua;
+        }
+        .setblue{
+            background-color: blue;
+        }
+        .setred{
+            background-color: red;
+        }
+        .setBox{
+            width:200px;
+            height:200px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <div v-bind:class="[activeClass,errorClass]"></div>
+    <!--对象中的样式类不写进data中,数组中的样式类要写进data中-->
+    <div v-bind:class="[{setblue:isBlue},{setred:isRed},setBox]">
+        <div v-bind:style="styleObject">hello</div>
+    </div>
+    <div v-bind:style="{display:['flex']}">
+lalal
+    </div>
+
+
+    <div v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username" key="username-input">
+    </div>
+    <div v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address" key="email-input">
+    </div>
+    <button v-on:click="change">hjaxkhsak</button>
+</div>
+</body>
+<script>
+
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            activeClass:'active',
+            loginType:'username',
+            errorClass:'text-danger',
+            isBlue:true,
+            isRed:true,
+            setBox:'setBox',
+            styleObject:{
+                color:'green',
+                'font-size':'50px',
+                width:'100px',
+                height:'100px'
+            }
+        },
+        methods:{
+            change:function(){
+                if(this.loginType=='username'){
+                    this.loginType=''
+                }else {
+                    this.loginType='username'
+                }
+
+            }
+        }
+
+    });
+</script>
+</html>

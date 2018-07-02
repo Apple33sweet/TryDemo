@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>-->
+    <title>Title</title>
+    <script>
+        window.onload=function(){
+            var a;
+            window.addEventListener('message', function(e) {
+                console.log(e.data,e.source,e.origin);
+                a=e.data;
+                console.log(a)
+                window.opener.postMessage('Nice to see you', 'http://localhost:63342/JYZDemo/testIMG.html?_ijt=l4am2168u98dla5d4mfne3p8ne');
+//            alert('监听：：：',e.data,e.source,e.origin);
+            },false);
+
+        }
+
+    </script>
+    <style>
+        img{
+            display:block;
+        }
+        .setlogin img{
+            width:40%;
+
+        }
+        input{
+            background-color: none;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <img src="pic/bg1.jpg">
+    <div>
+        <img src="pic/dog1.jpg">
+        <input placeholder="admin">
+    </div>
+    <div>
+        <img src="pic/dog2.jpg">
+        <input placeholder="password">
+    </div>
+    <div class="setlogin">
+        <a><img src="pic/dog3.jpg"></a>
+    </div>
+</div>
+</body>
+
+</html>
