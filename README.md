@@ -1,12 +1,6 @@
 ## Welcome to GitHub Pages
-
-show Demo
-
-JYZ
-
-### Markdown
-
-https://apple33sweet.github.io/TryDemo/
+name by JYZ 
+主要涉及到学习vue2.0官方文档时写的部分小例子
 
 ### demo address
 
